@@ -4,23 +4,35 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Add Post</title>
+    <% if (typeof post == 'undefined') { %>
+        <title>Add Post</title>
+    <% } else { %>
+        <title>Edit Post</title>
+    <% } %>
+    <link rel="stylesheet" href="/css/bootstrap.min.css"/>
 </head>
 <body>
-    <a href="/">Back</a>
-    <form method="POST" action="/submitPost">
-        <div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 offset-2">
+                <a href="/">Back</a>
+    <form method="POST" action="<%= (typeof post == 'undefined')?'/submitPost':'/updatePost/'+post.id %>">
+        <div class="form-group">
             <label for="title">Title</label>
-            <input id="title" type="text" name="title" required/>
+            <input class="form-control" id="title" type="text" name="title" value="<%= (typeof post == 'undefined')?'':post.title %>" required/>
         </div>
-        <div>
+        <div class="form-group">
             <label for="description">Description</label>
-            <textarea id="description" name="description" required>
+            <textarea id="description" class="form-control" name="description" required><%= (typeof post == 'undefined')?'':post.description %>
             </textarea>
         </div>
-        <div>
-            <input type="submit" value="Submit"/>
+        <div class="form-group">
+            <input class="btn btn-success" type="submit" value="<%= (typeof post == 'undefined')?'Submit':'Update' %>"/>
         </div>
     </form>
+            </div>
+        </div>
+    </div>
+    
 </body>
 </html>

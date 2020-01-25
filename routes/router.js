@@ -36,6 +36,19 @@ router.get('/post/:id',function(request,response){
     });
 });
 
+//edit post route
+router.get('/post/:id/edit',function(request,response){
+    Post.findById(request.params['id'],function(err,post){
+        if(err){
+            console.log(err);
+        }else{
+            response.render('addPost',{
+                post:post
+            });
+        }
+    });
+}); 
+
 //submit Post
 router.post('/submitPost',function(request,response){
     let post= new Post(request.body);
@@ -48,8 +61,37 @@ router.post('/submitPost',function(request,response){
             response.redirect('/')
         }
     });
-})
+});
 
+//update post
+router.post('/updatePost/:id',function(request,response){
+    Post.findById(request.params['id'],function(err,post){
+        if(err){
+            console.log(err);
+        }else{
+            post.title= request.body.title;
+            post.description = request.body.description;
+            post.save(function(err){
+                if(err){
+                    console.log(err);
+                }else{
+                    console.log('Post updated')
+                    response.redirect('/');
+                }
+            });
+        }
+    });
+});
+//delete post
+router.get('/post/:id/delete',function(request,response){
+    Post.remove({_id:request.params['id']},function(err){
+        if(err){
+            console.log(err);
+        }else{
+            response.redirect('/');
+        }
+    });
+});
 //Home route
 router.get('/blog',function(request,response){
     response.render("index",{
