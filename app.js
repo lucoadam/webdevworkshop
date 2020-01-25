@@ -36,21 +36,9 @@ app.set('views',path.join(__dirname,
 app.set('view engine','ejs');
 
 
-//Home route
-app.get('/',function(request,response){
-    response.render("index",{
-        title: "Home Page",
-        description:"Some decription"
-    });
-});
+//route
+app.use('/',require('./routes/router'));
 
-//Home route
-app.get('/blog',function(request,response){
-    response.render("blog",{
-        title: "Blog Page",
-        description:"This is blog page."
-    });
-});
 //creating a server
 app.listen(8000,function(){
     console.log('Server running successfully at localhost:8000');
