@@ -9,6 +9,17 @@ router.get('/',function(request,response){
     });
 });
 
+//create post
+router.get('/post/create',function(request,response){
+    response.render("addPost");
+})
+
+//submit Post
+router.post('/submitPost',function(request,response){
+    console.log(request.body);
+    response.send('Post Successful');
+})
+
 //Home route
 router.get('/blog',function(request,response){
     response.render("index",{

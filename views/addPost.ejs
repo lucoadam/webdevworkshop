@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Add Post</title>
+</head>
+<body>
+    <a href="/">Back</a>
+    <form method="POST" action="/submitPost">
+        <div>
+            <label for="title">Title</label>
+            <input id="title" type="text" name="title" required/>
+        </div>
+        <div>
+            <label for="description">Description</label>
+            <textarea id="description" name="description" required>
+            </textarea>
+        </div>
+        <div>
+            <input type="submit" value="Submit"/>
+        </div>
+    </form>
+</body>
+</html>
