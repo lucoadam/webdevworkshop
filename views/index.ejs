@@ -10,5 +10,18 @@
     <h1><%= title %></h1>
     <a href="/post/create">Add Post</a>
     <p><%= description %></p>
+    <h2>Posts</h2>
+     
+    <ul>
+        <% if (posts) { %>
+            <!--  posts.forEach(function(post) { -->
+         <% posts.forEach(post => { %>
+          <a href="/post/<%= post.id %>">
+            <li><%= post.title %> </li>
+          </a>
+         <% }) %>
+        <% } %>
+    </ul> 
+
 </body>
 </html>
