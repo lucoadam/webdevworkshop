@@ -11,7 +11,16 @@ mongoose.connect('mongodb://127.0.0.1:27017/mydb',{
     useUnifiedTopology: true
 });
 let db= mongoose.connection;
-// db.createCollection()
+
+//checking database connection
+db.once('open',function(){
+    console.log("Connection to MongoDB database successful")
+});
+//error on database connection
+db.on('error',function(err){
+    console.log(err);
+});
+
 //Inititalizing express app 
 const app  = express();
 
@@ -29,7 +38,6 @@ app.set('view engine','ejs');
 
 //Home route
 app.get('/',function(request,response){
-    console.log(Post.find())
     response.render("index",{
         title: "Home Page",
         description:"Some decription"
