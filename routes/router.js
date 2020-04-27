@@ -1,7 +1,30 @@
 const express = require('express');
+const path = require('path');
 let router = express.Router();
 let Post = require('./../models/Post');
 
+const multer  = require('multer');
+const storage = multer.diskStorage({
+    destination: './public/uploads',
+    filename: function(req,file,cb){
+        cb(null,file.fieldname+'-'+Date.now()+path.extname(file.originalname));
+    }
+});
+const upload = multer({
+    storage:storage
+}).single('avatar');
+router.post('/profile', function (req, res,next) {
+    upload(req,res,(err)=>{
+        if(err){
+            res.send(err);
+        }else{
+            console.log(req.file);
+        }
+    });
+    res.send('test');
+    // req.file is the `avatar` file
+    // req.body will hold the text fields, if there were an
+});
 //home route
 router.get('/',function(request,response){
     Post.find({},function(err,posts){

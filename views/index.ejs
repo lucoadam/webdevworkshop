@@ -37,6 +37,12 @@
     <h1><%= title %></h1>
     <a href="/post/create">Add Post</a>
     <p><%= description %></p>
+        <form action="/profile" method="post" enctype="multipart/form-data">
+            <input type="file" name="avatar" />
+            <input type="submit" value="submit"/>
+        </form>
+        <br/>
+        <br/>
     <h2>Posts</h2>
      
     <ul>
