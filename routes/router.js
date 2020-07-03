@@ -26,8 +26,16 @@ router.post('/profile', function (req, res,next) {
     // req.body will hold the text fields, if there were an
 });
 //home route
-router.get('/',function(request,response){
-    Post.find({},function(err,posts){
+router.get('/post',function(request,response){
+    let query={}
+    if('q' in request.query){
+       query={
+            title: {
+                $regex: new RegExp(request.query.q)
+            }
+        }
+    }   
+    Post.find(query,function(err,posts){
         if(err){
             console.log(err);
         }else{
@@ -38,6 +46,7 @@ router.get('/',function(request,response){
             });
         }
     });
+    
     
 });
 
