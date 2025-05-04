@@ -25,6 +25,9 @@ router.post('/profile', function (req, res,next) {
     // req.file is the `avatar` file
     // req.body will hold the text fields, if there were an
 });
+router.get("/", function(request, response) {
+    response.redirect("/post");
+})
 //home route
 router.get('/post',function(request,response){
     let query={}
