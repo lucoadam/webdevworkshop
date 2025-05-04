@@ -6,7 +6,7 @@ const mongoose = require('mongoose');
 let Post = require('./models/Post')
 
 //connection to database
-mongoose.connect('mongodb://127.0.0.1:27017/mydb',{
+mongoose.connect('mongodb://mongo:doeewhkctknwxwgu@apiproject-mongodb-ejadjs:27017/mydb',{
     useNewUrlParser:true,
     useUnifiedTopology: true
 });
